@@ -147,6 +147,7 @@ These keys are still honored, so your configuration keeps working as-is. However
 | `colors.medium`      | string                         | `"#ffaa00"` | Color for medium tier                                                         |
 | `colors.fast`        | string                         | `"#00ff88"` | Color for fast tier                                                           |
 | `colors.blazing`     | string                         | `"#44ddff"` | Color for blazing tier                                                        |
+| `durationColor`      | string                         | `"#61afef"` | Color for the elapsed-time portion of stats/full modes ("" = none)            |
 | `slidingWindow`      | number                         | `1000`      | Sliding window duration in ms                                                 |
 | `display`            | `tps`, `ttft`, `stats`, `full` | `tps`       | Display mode (see [Display Modes](#display-modes))                            |
 | `useProviderTokens`  | boolean                        | `false`     | Opt-in: use provider-reported count instead of the extension one              |
@@ -309,6 +310,21 @@ The TPS calculation continues normally regardless of the update interval — onl
 | `full`  | `⚡ TPS: 25.0 tok/s (150 tok in 6.0s · TTFT: 450 ms)` — everything          |
 
 > **Note:** Set `icon: ""` to hide the icon prefix, rendering just `TPS: 25.0 tok/s`.
+
+### Elapsed-time formatting
+
+In `stats`/`full` modes the elapsed time automatically switches to the largest
+sensible units as the response grows:
+
+| Elapsed        | Display       |
+| -------------- | ------------- |
+| 45.6 seconds   | `45.6s`       |
+| 5 min 32.4 s   | `5m 32.4s`    |
+| 2 h 5 min      | `2h 5m`       |
+| 3 d 7 h        | `3d 7h`       |
+
+The whole duration is rendered in a single color, configurable via
+`durationColor` (set it to `""` to disable coloring).
 
 ### Example: Minimal status bar
 

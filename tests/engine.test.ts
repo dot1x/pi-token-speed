@@ -9,6 +9,7 @@ import {
   COUNT_STRATEGY,
   DEFAULT_ICON,
   DISPLAY_MODE,
+  DURATION_COLOR,
   END_TPS_BEHAVIOR,
   SLIDING_WINDOW,
   TPS_THRESHOLD_BLAZING,
@@ -42,6 +43,7 @@ const fakeConfig: TokenSpeedConfig = {
     fast: COLOR_FAST,
     blazing: COLOR_BLAZING,
   },
+  durationColor: DURATION_COLOR,
   providerOverrides: {},
 };
 

@@ -53,6 +53,8 @@ interface TokenSpeedConfigFields {
   updateInterval: number; // ms, 0 = update on every delta
   thresholds: Thresholds;
   colors: Colors;
+  /** Color for the elapsed-time portion of stats/full modes ("" = none). */
+  durationColor: string;
 }
 
 /**

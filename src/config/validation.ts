@@ -17,6 +17,7 @@ import {
   COUNT_STRATEGY,
   DEFAULT_ICON,
   DISPLAY_MODE,
+  DURATION_COLOR,
   END_TPS_BEHAVIOR,
   SLIDING_WINDOW,
   TPS_THRESHOLD_BLAZING,
@@ -70,6 +71,10 @@ export class Validator {
     response.icon = this.checkIcon(config.icon, errors);
     response.updateInterval = this.checkUpdateInterval(
       config.updateInterval,
+      errors,
+    );
+    response.durationColor = this.checkDurationColor(
+      config.durationColor,
       errors,
     );
 
@@ -472,5 +477,27 @@ export class Validator {
     );
 
     return UPDATE_INTERVAL;
+  }
+
+  /**
+   * Checks the elapsed-time color. Valid hex is kept (lowercased); an empty
+   * string disables coloring; anything else falls back to the default with
+   * a warning.
+   *
+   * @param value The raw durationColor value to check.
+   * @param errors The shared errors array to push to if invalid.
+   * @returns The validated (or defaulted) durationColor value.
+   */
+  private static checkDurationColor(value: unknown, errors: string[]): string {
+    if (value === "") return ""; // explicit opt-out of coloring
+    if (typeof value === "string" && this.isValidHex(value)) {
+      return value.toLowerCase();
+    }
+
+    errors.push(
+      `- Invalid durationColor "${value}" — defaulting to ${DURATION_COLOR}.`,
+    );
+
+    return DURATION_COLOR;
   }
 }

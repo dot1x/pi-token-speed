@@ -46,6 +46,12 @@ export const COLOR_FAST = "#00ff88";
 export const COLOR_BLAZING = "#44ddff";
 
 /**
+ * Color applied to the elapsed-time portion of the stats/full display.
+ * Empty string disables coloring.
+ */
+export const DURATION_COLOR = "#61afef";
+
+/**
  * Sliding window duration (ms) for time-based TPS calculation
  */
 export const SLIDING_WINDOW = 1000;
